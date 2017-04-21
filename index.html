@@ -1,0 +1,61 @@
+<!doctype html>
+<head>
+    <title>Physics demo</title>
+    <meta charset="utf-8">
+    <script src="js/vendor/aframe.min.js"></script>
+    <script src="js/vendor/aframe-physics-system.min.js"></script>
+    <!-- TODO: remove avatar-replayer -->
+    <script src="https://rawgit.com/dmarcos/aframe-motion-capture/master/dist/aframe-motion-capture-components.min.js"></script>
+</head>
+<body>
+    <a-scene bowling avatar-replayer="src: assets/player-recording-00.json; loop: true; spectatorMode: true;"
+        physics="debug: true">
+        <a-sphere id="hand-lock" radius="0.1" position="0 2.70 0" color="#393"
+            static-body visible="false"
+        ></a-sphere>
+        <a-sphere id="ball" radius="0.1" color="#afa"
+            dynamic-body="mass: 5" constraint="target: #hand-lock; type: lock;"
+        ></a-sphere>
+
+        <a-cylinder radius="0.25" height="1.5" position="0 0.75 -8" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+
+        <a-cylinder radius="0.25" height="1.5" position="-0.5 0.75 -8.5" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+        <a-cylinder radius="0.25" height="1.5" position="0.5 0.75 -8.5" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+
+        <a-cylinder radius="0.25" height="1.5" position="0 0.5 -9" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+        <a-cylinder radius="0.25" height="1.5" position="-1 0.75 -9" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+        <a-cylinder radius="0.25" height="1.5" position="1 0.75 -9" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+
+        <a-cylinder radius="0.25" height="1.5" position="-0.5 0.75 -9.5" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+        <a-cylinder radius="0.25" height="1.5" position="0.5 0.75 -9.5" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+        <a-cylinder radius="0.25" height="1.5" position="-1.5 0.75 -9.5" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+        <a-cylinder radius="0.25" height="1.5" position="1.5 0.75 -9.5" color="#ccc"
+            dynamic-body="mass: 1"></a-cylinder>
+
+
+        <a-box color="#aaa" width="0.25" height="0.5" depth="50" position="-3 0 -20"
+            static-body></a-box>
+        <a-box color="#aaa" width="0.25" height="0.5" depth="50" position="3 0 -20"
+            static-body></a-box>
+        <a-plane color="#ccc" width="20" height="50"
+            rotation="-90 0 0" position="0 0 -20" static-body>
+        </a-plane>
+
+        <a-entity id="right" throwing-hand hand-controls="right"></a-entity>
+        <a-entity id="left" hand-controls="left"></a-entity>
+
+        <a-sky color="#101"></a-sky>
+
+        <a-camera position="5 0 -3" rotation="0 90 0"></a-camera>
+    </a-scene>
+    <script src="js/main.js"></script>
+</body>
