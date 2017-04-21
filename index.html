@@ -13,9 +13,10 @@
         <a-sphere id="hand-lock" radius="0.1" position="0 2.70 0" color="#393"
             static-body visible="false"
         ></a-sphere>
-        <a-sphere id="ball" radius="0.1" color="#afa"
-            dynamic-body="mass: 5" constraint="target: #hand-lock; type: lock;"
-        ></a-sphere>
+        <!-- <a-sphere id="ball" radius="0.2" color="#afa"
+            dynamic-body="mass: 500" constraint="target: #hand-lock; type: lock;"
+        ></a-sphere> -->
+        <a-sphere id="ball" radius="0.2" color="#afa" dynamic-body="mass: 10"></a-sphere>
 
         <a-cylinder radius="0.25" height="1.5" position="0 0.75 -8" color="#ccc"
             dynamic-body="mass: 1"></a-cylinder>
