@@ -9,15 +9,19 @@
     <script src="js/main.js"></script>
 </head>
 <body>
-    <!-- <a-scene avatar-recorder physics="debug: true"> -->
-    <!-- <a-scene bowling avatar-replayer="src: assets/avatar00.json; loop: true; spectatorMode: true;"> -->
-    <a-scene bowling avatar-replayer="src: assets/avatar00.json; loop: true;">
+    <a-scene bowling  physics="debug: false">
+        <!-- <a-scene bowling avatar-replayer="src: assets/avatar01.json; loop: true; spectatorMode: true;"> -->
+    <!-- <a-scene bowling avatar-replayer="src: assets/avatar01.json; loop: true;"> -->
         <!-- physics="debug: true"> -->
     <!-- <a-scene bowling physics="debug: true"> -->
         <!-- <a-sphere id="ball" radius="0.2" color="#afa"
             dynamic-body="mass: 500" constraint="target: #hand-lock; type: lock;"
         ></a-sphere> -->
-        <a-sphere id="ball" radius="0.15" color="#afa" dynamic-body="mass: 10"></a-sphere>
+
+        <a-entity id="right" vive-controls="hand: right" hand-controls="right" throwing-hand></a-entity>
+        <a-entity id="left" vive-controls="hand: left" hand-controls="left"></a-entity>
+
+        <a-sphere id="ball" radius="0.15" color="#afa" dynamic-body="mass: 50; linearDamping: 0.0001"></a-sphere>
 
         <a-cylinder radius="0.05" height="0.3" position="0 0.15 -5" color="#ccc"
             dynamic-body="mass: 5"></a-cylinder>
@@ -52,9 +56,6 @@
             rotation="-90 0 0" position="0 0 -20" static-body>
         </a-plane> -->
         <a-box color="#ccc" width="20" depth="50" height="1" position="0 -0.5 -20" static-body></a-box>
-
-        <a-entity id="right" throwing-hand vive-controls="hand: right" hand-controls="right"></a-entity>
-        <!-- <a-entity id="left" hand-controls="left"></a-entity> -->
 
         <a-sky color="#101"></a-sky>
 
