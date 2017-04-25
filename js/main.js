@@ -1,9 +1,7 @@
 var shallLaunch = false;
 var hasLaunched = false;
-var ball = document.getElementById('ball');
-var hand = document.getElementById('right');
-var handLock = document.getElementById('hand-lock');
-
+var ball;
+var hand;
 var lastPosition = new CANNON.Vec3(0, 0, 0);
 var currentPosition = new CANNON.Vec3(0, 0, 0);
 
@@ -16,12 +14,20 @@ function launch() {
 }
 
 AFRAME.registerComponent('throwing-hand', {
-    dependencies: ['dynamic-body'],
+    dependencies: ['dynamic-body', 'vive-controls'],
+    init: function () {
+        this.el.addEventListener('triggerdown', function (e) {
+            console.log('triggerdown');
+        });
+        this.el.addEventListener('triggerup', function (e) {
+            console.log('triggerup');
+        });
+    },
     tick: function () {
         // handLock.setAttribute('position', this.el.getAttribute('position'));
         let position = this.el.getAttribute('position');
 
-        if (!hasLaunched && ball.body) {
+        if (!hasLaunched && ball && ball.body) {
             ball.body.velocity.set(0, 0, 0);
             ball.body.angularVelocity.set(0, 0, 0);
             ball.body.position.set(position.x, position.y, position.z);
@@ -38,12 +44,15 @@ AFRAME.registerComponent('throwing-hand', {
 });
 
 window.onload = function () {
-    document.addEventListener('keydown', function (e) {
-        if (e.keyCode === 32) {
-            e.preventDefault();
-            if (!hasLaunched) {
-                shallLaunch = true;
-            }
-        }
-    });
+    ball = document.getElementById('ball');
+    hand = document.getElementById('right');
+
+    // document.addEventListener('keydown', function (e) {
+    //     if (e.keyCode === 32) {
+    //         // e.preventDefault();
+    //         // if (!hasLaunched) {
+    //         //     shallLaunch = true;
+    //         // }
+    //     }
+    // });
 };
