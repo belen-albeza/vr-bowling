@@ -5,10 +5,9 @@ var lastPosition = new CANNON.Vec3(0, 0, 0);
 var currentPosition = new CANNON.Vec3(0, 0, 0);
 var hasPrepared = false;
 
-function throwBall() {
+function throwBall(delta) {
     hasThrown = true;
     hasPrepared = false;
-    let delta = 1/60.0;
     let velocity = currentPosition.vsub(lastPosition).scale(1/delta);
     ball.body.applyLocalImpulse(velocity.scale(50), new CANNON.Vec3(0, 0, 0));
 }
@@ -33,8 +32,7 @@ AFRAME.registerComponent('throwing-hand', {
         });
 
     },
-    tick: function () {
-        // handLock.setAttribute('position', this.el.getAttribute('position'));
+    tick: function (uptime, delta) {
         let position = this.el.getAttribute('position');
 
         if (!hasThrown && ball && ball.body) {
@@ -47,7 +45,7 @@ AFRAME.registerComponent('throwing-hand', {
         if (shallThrow && ball && ball.body) {
             shallThrow = false;
             currentPosition.copy(position);
-            throwBall();
+            throwBall(delta / 1000.0);
         }
 
         lastPosition.copy(position);
